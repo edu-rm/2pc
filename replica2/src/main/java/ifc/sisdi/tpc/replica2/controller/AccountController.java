@@ -79,10 +79,11 @@ public class AccountController {
     	boolean achou = false;
         for(Account account:this.accounts){
             if(account.getNumber() == actionAux.getConta()){
-                switch (actionAux.getOperacao()) {
-                    case "debito" -> account.setBalance(account.getBalance() + actionAux.getValor());
-                    case "credito" -> account.setBalance(account.getBalance() - actionAux.getValor());
-                }
+            	if (actionAux.getOperacao() == "debito") {
+            		account.setBalance(account.getBalance() + actionAux.getValor());
+            	} else {
+            		account.setBalance(account.getBalance() - actionAux.getValor());
+            	}
                 
                 achou = true;
                 this.log.remove(indexAction);

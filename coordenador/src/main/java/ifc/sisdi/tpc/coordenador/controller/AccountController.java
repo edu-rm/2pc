@@ -105,10 +105,12 @@ public class AccountController {
                 // Remove da memória temporária e faz a operação
                 log.remove(action);
 
-                switch (action.getOperacao()) {
-                    case "debito" -> account.setSaldo(account.getSaldo() - action.getValor());
-                    case "credito" -> account.setSaldo(account.getSaldo() + action.getValor());
+                if (action.getOperacao() == "debito") {
+                	account.setSaldo(account.getSaldo() - action.getValor());
+                } else {
+                	account.setSaldo(account.getSaldo() + action.getValor());
                 }
+                
                 return action;
             }
         }
